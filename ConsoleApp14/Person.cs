@@ -8,7 +8,7 @@ namespace ConsoleApp14
 {
 	public enum Gender { Male, Female }
 
-	public class Person
+	public class Person : IComparable
 	{
 		public int Id { get; set; }
 		public string FirstName { get; set; }
@@ -22,6 +22,11 @@ namespace ConsoleApp14
 		public override string ToString()
 		{
 			return $"{Id}: {FullName} ({Gender}), {Age} years";
+		}
+
+		public void CompareTo()
+		{
+			
 		}
 	}
 

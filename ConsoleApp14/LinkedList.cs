@@ -25,21 +25,21 @@ namespace ConsoleApp14
 
 		}
 
-		private ListItem _firstItem;
-		private ListItem _lastItem;
-		private int _itemCount;
+		private ListItem firstItem;
+		private ListItem lastItem;
+		private int itemCount;
 
 		public object First
 		{
 			get
 			{
-				if (_firstItem == null)
+				if (firstItem == null)
 				{
 					return null;
 				}
 				else
 				{
-					return _firstItem.Item;
+					return firstItem.Item;
 				}
 			}
 		}
@@ -48,13 +48,13 @@ namespace ConsoleApp14
 		{
 			get
 			{
-				if (_lastItem == null)
+				if (lastItem == null)
 				{
 					return null;
 				}
 				else
 				{
-					return _lastItem.Item;
+					return lastItem.Item;
 				}
 				
 			}
@@ -62,7 +62,7 @@ namespace ConsoleApp14
 
 		public int Count
 		{
-			get { return _itemCount; }
+			get { return itemCount; }
 
 		}
 
@@ -73,8 +73,8 @@ namespace ConsoleApp14
 
 		private ListItem ItemIndex(int index)
 		{
-			ListItem currentItem = _firstItem; ;
-			if (_itemCount < index)
+			ListItem currentItem = firstItem; ;
+			if (itemCount < index)
 			{
 				throw new ArgumentOutOfRangeException("");
 			}
@@ -93,17 +93,17 @@ namespace ConsoleApp14
 		public void InsertFirst(object o)
 		{
 			ListItem newFirst = new ListItem(o);
-			if (_itemCount == 0)
+			if (itemCount == 0)
 			{
-				_firstItem = newFirst;
-				_lastItem = newFirst;
+				firstItem = newFirst;
+				lastItem = newFirst;
 			}
 			else
 			{
-			newFirst.Next = _firstItem;
-			_firstItem = newFirst;
+			newFirst.Next = firstItem;
+			firstItem = newFirst;
 			}
-			_itemCount++;
+			itemCount++;
 		}
 
 		public void InsertLast(object o)
@@ -111,16 +111,16 @@ namespace ConsoleApp14
 			ListItem newLast = new ListItem(o);
 			if(Count == 0)
 			{
-				_lastItem = newLast;
-				_firstItem = newLast;
+				lastItem = newLast;
+				firstItem = newLast;
 			}
 			else
 			{
-				_lastItem.Next = newLast;
-				_lastItem = newLast;
+				lastItem.Next = newLast;
+				lastItem = newLast;
 			}
 
-			_itemCount++;
+			itemCount++;
 		}
 
 		public void RemoveAt(int index)
@@ -128,29 +128,29 @@ namespace ConsoleApp14
 			ListItem currentItem = ItemIndex(index - 1);
 			if (index == 0)
 			{
-				_firstItem = _firstItem.Next;
+				firstItem = firstItem.Next;
 			}
 
-			if (index == _itemCount - 1)
+			if (index == itemCount - 1)
 			{
-				_lastItem = currentItem;
-				_lastItem.Next = null;
+				lastItem = currentItem;
+				lastItem.Next = null;
 			}
 			else
 			{
 				currentItem.Next = ItemIndex(index + 1);
 			}
 
-			_itemCount--;
+			itemCount--;
 		}
 
 		public override string ToString()
 		{
 			string result = "";
-			for (int i = 0; i < _itemCount; i++)
+			for (int i = 0; i < itemCount; i++)
 			{
 				result += ItemIndex(i).ToString() + "|";
-				//if (i < _itemCount - 1)
+				//if (i < itemCount - 1)
 				//{
 				//	result += "|";
 				//}
